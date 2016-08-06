@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "materialize": "^0.97.7"
+    "materialize": "^0.97.7",
+    "jquery-touchswipe": "^1.6.18"
   }
 }

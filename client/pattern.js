@@ -150,13 +150,35 @@
         //document.addEventListener(Game.events.KEYUP, this);
         window.addEventListener(Game.events.RESIZE, this);
 
-
-
         $(document).on('gameOver', $.proxy(this.gameOver, this));
         //document.addEventListener('gameOver', (function(this){function (e) { console.log('hr')}})(this), false);
-
         // Dispatch the event.
         //document.dispatchEvent(event);
+        //
+
+        $(function() {
+            //Enable swiping...
+            $(document).swipe({
+                //Generic swipe handler for all directions
+                swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+                    //$(this).text("You swiped " + direction);
+                    triggerKeyDown(40);
+                    /*switch (direction) {
+                        case: 'UP'
+
+
+                    }*/
+                },
+                //Default is 75px, set to 0 for demo so any distance triggers swipe
+                threshold: 0
+            });
+        });
+
+        function triggerKeyDown(key) {
+            var e = $.Event('keypress');
+            e.which = key; // Character 'A'
+            $(document).trigger(e);
+        }
 
     };
 
