@@ -155,30 +155,39 @@
         // Dispatch the event.
         //document.dispatchEvent(event);
         //
-
+        var that = this;
         $(function() {
+
+
             //Enable swiping...
-            $(document).swipe({
+            //that.elem.boardElem
+            $("#" + that.elem.game_container).swipe({
                 //Generic swipe handler for all directions
                 swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
                     //$(this).text("You swiped " + direction);
-                    triggerKeyDown(40);
-                    /*switch (direction) {
-                        case: 'UP'
+                    event.preventDefault();
 
-
-                    }*/
+                    switch (direction) {
+                        case 'up':
+                            that.moveUp();
+                            break;
+                        case 'down':
+                            that.moveDown();
+                            break;
+                        case 'left':
+                            that.moveLeft();
+                            break;
+                        case 'right':
+                            that.moveRight();
+                            break;
+                    }
                 },
                 //Default is 75px, set to 0 for demo so any distance triggers swipe
                 threshold: 0
             });
         });
 
-        function triggerKeyDown(key) {
-            var e = $.Event('keypress');
-            e.which = key; // Character 'A'
-            $(document).trigger(e);
-        }
+
 
     };
 
@@ -189,45 +198,74 @@
         var y = pos.y;
         if (Game.keycodes.LEFT[e.keyCode]) {
 
-            if (this.board.move["Right"]()) {
-                this.current_swap++;
-                //this.board.display(this.board.out);
-                this.isGameOver();
-                this.updateUI(x, y);
-            }
+            this.moveLeft();
+
         }
 
         if (Game.keycodes.UP[e.keyCode]) {
-            if (this.board.move["Down"]()) {
-                this.current_swap++;
-                this.isGameOver();
+            this.moveUp();
 
-                //this.board.display(this.board.out);
-                this.updateUI(x, y);
-            }
         }
 
         if (Game.keycodes.RIGHT[e.keyCode]) {
-            if (this.board.move["Left"]()) {
-                this.current_swap++;
-                this.isGameOver();
+            this.moveRight();
 
-                //this.board.display(this.board.out);
-                this.updateUI(x, y);
-            }
         }
 
         if (Game.keycodes.DOWN[e.keyCode]) {
-            if (this.board.move["Up"]()) {
-                this.current_swap++;
-                this.isGameOver();
-
-                //this.board.display(this.board.out);
-                this.updateUI(x, y);
-            }
+            this.moveDown();
         }
 
     };
+
+    Game.prototype.moveLeft = function() {
+        var pos = this.board.current_empty;
+        var x = pos.x;
+        var y = pos.y;
+        if (this.board.move["Right"]()) {
+            this.current_swap++;
+            //this.board.display(this.board.out);
+            this.isGameOver();
+            this.updateUI(x, y);
+        }
+    }
+
+    Game.prototype.moveUp = function() {
+        var pos = this.board.current_empty;
+        var x = pos.x;
+        var y = pos.y;
+        if (this.board.move["Down"]()) {
+            this.current_swap++;
+            this.isGameOver();
+
+            //this.board.display(this.board.out);
+            this.updateUI(x, y);
+        }
+    }
+    Game.prototype.moveRight = function() {
+        var pos = this.board.current_empty;
+        var x = pos.x;
+        var y = pos.y;
+        if (this.board.move["Left"]()) {
+            this.current_swap++;
+            this.isGameOver();
+
+            //this.board.display(this.board.out);
+            this.updateUI(x, y);
+        }
+    }
+    Game.prototype.moveDown = function() {
+        var pos = this.board.current_empty;
+        var x = pos.x;
+        var y = pos.y;
+        if (this.board.move["Up"]()) {
+            this.current_swap++;
+            this.isGameOver();
+
+            //this.board.display(this.board.out);
+            this.updateUI(x, y);
+        }
+    }
     Game.prototype.updateUI = function(x, y) {
         var data_cell_id = '#cell-' + x.toString() + '-' + y.toString();
         var data_elem = $(data_cell_id);
