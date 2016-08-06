@@ -116,7 +116,7 @@
                     <div class = "modal-content" >\
                         <h4> Game Over </h4>\
                         <p> Congrats!!!!!!!! </p>\
-                        <div class="my-rating"></div>\
+                        <div class="my-rating" id="my-rating"></div>\
                     </div>\
                     <div class = "modal-footer" >\
                         <button id="modal-new-game" class = " modal-action modal-close waves-effect waves-green btn-flat btn" ><i class="material-icons left">restore</i> New Game </button>\
@@ -126,6 +126,10 @@
     };
     Game.prototype.insertGameOverModel = function() {
         $('body').append(Game.gameOverModel.html);
+        $("#my-rating").starRating({
+            readOnly: true,
+            starSize: 30
+        });
     };
 
     Game.prototype.handleEvent = function(e) {
@@ -266,11 +270,9 @@
 
     Game.prototype.gameOver = function() {
 
-        $(".my-rating").starRating({
-            initialRating: this.getPoint(),
-            readOnly: true,
-            starSize: 25
-        });
+        /* */
+
+        $("#my-rating").starRating('setRating', this.getPoint());
         $('#' + Game.gameOverModel.id).openModal({
             dismissible: false
         });
