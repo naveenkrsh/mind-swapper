@@ -1,6 +1,20 @@
 (function(Lava) {
-    var event = new Event('gameOver');
-    var Game = function(container_ids, input, size) {
+
+    var event = (function() {
+        function CustomEvent(event, params) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
+            var evt = document.createEvent('gameOver');
+            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+            return evt;
+        }
+
+        CustomEvent.prototype = window.Event.prototype;
+
+        window.CustomEvent = CustomEvent;
+    })();
+    //var event = new Event('gameOver');
+
+    function Game(container_ids, input, size) {
 
         this.elem = container_ids
         this.input = input;
