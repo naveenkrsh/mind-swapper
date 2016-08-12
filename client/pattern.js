@@ -124,6 +124,8 @@
                     </div>\
                 </div>'
     };
+
+    
     Game.prototype.insertGameOverModel = function() {
         $('body').append(Game.gameOverModel.html);
         $("#my-rating").starRating({
