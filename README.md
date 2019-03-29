@@ -6,6 +6,7 @@
 * Mind Swapper Game
 * Version : 0.0.1
 
+[Play Online](https://mind-swapper.herokuapp.com)
 
 ### How do I get set up? ###
 
@@ -24,4 +25,4 @@
     1.open index.html in browser     
     
 
- [Play](https://mind-swapper.herokuapp.com)
+
