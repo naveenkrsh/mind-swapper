@@ -23,5 +23,5 @@
 
     1.open index.html in browser     
     
- ### PLAY 
-    https://mind-swapper.herokuapp.com/
+ ### PLAY
+ [a link](https://mind-swapper.herokuapp.com)
