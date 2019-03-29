@@ -3,7 +3,7 @@
 
 ### What is this repository for? ###
 
-* Matrix Game
+* Mind Swapper Game
 * Version : 0.0.1
 
 
@@ -22,3 +22,6 @@
 **B) By opening client folder**
 
     1.open index.html in browser     
+    
+ ### PLAY 
+    https://mind-swapper.herokuapp.com/
